@@ -1,8 +1,10 @@
 <template>
-  <div id="neon_matrix">
-    <div class="control">
-      <button @click="refurbishFrame" class="bg-blue mb-12">add index</button>
+  <div id="neon" class="flex flex-col">
+    <div class="control flex flex-col items-center justify-center text-xl bg-blue-dark cursor-pointer h-12 active:bg-gray-dark active:text-white"  @click="refurbishFrame">
+      <div class="items-center justify-center h-8">add index</div>
     </div>
+    <div id="neon_matrix" class="mt-12"></div>
+    <div class="info text-white text-sm text-center">row:{{block_row_num}}  column:{{block_column_num}}</div>
   </div>
 </template>
 
@@ -14,140 +16,6 @@ export default {
   name: "NeonMatrixLayout",
   data(){
     return {
-      digit: [
-            [
-              [0,0,1,1,1,0,0],
-              [0,1,1,0,1,1,0],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,0,1,1,0],
-              [0,0,1,1,1,0,0]
-            ],//0
-            [
-              [0,0,0,1,1,0,0],
-              [0,1,1,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [1,1,1,1,1,1,1]
-            ],//1
-            [
-              [0,1,1,1,1,1,0],
-              [1,1,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,0,0],
-              [0,0,1,1,0,0,0],
-              [0,1,1,0,0,0,0],
-              [1,1,0,0,0,0,0],
-              [1,1,0,0,0,1,1],
-              [1,1,1,1,1,1,1]
-            ],//2
-            [
-              [1,1,1,1,1,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,0,0,1,1,0],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,1,1,0]
-            ],//3
-            [
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,1,0],
-              [0,0,1,1,1,1,0],
-              [0,1,1,0,1,1,0],
-              [1,1,0,0,1,1,0],
-              [1,1,1,1,1,1,1],
-              [0,0,0,0,1,1,0],
-              [0,0,0,0,1,1,0],
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,1,1]
-            ],//4
-            [
-              [1,1,1,1,1,1,1],
-              [1,1,0,0,0,0,0],
-              [1,1,0,0,0,0,0],
-              [1,1,1,1,1,1,0],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,1,1,0]
-            ],//5
-            [
-              [0,0,0,0,1,1,0],
-              [0,0,1,1,0,0,0],
-              [0,1,1,0,0,0,0],
-              [1,1,0,0,0,0,0],
-              [1,1,0,1,1,1,0],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,1,1,0]
-            ],//6
-            [
-              [1,1,1,1,1,1,1],
-              [1,1,0,0,0,1,1],
-              [0,0,0,0,1,1,0],
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,0,0],
-              [0,0,0,1,1,0,0],
-              [0,0,1,1,0,0,0],
-              [0,0,1,1,0,0,0],
-              [0,0,1,1,0,0,0],
-              [0,0,1,1,0,0,0]
-            ],//7
-            [
-              [0,1,1,1,1,1,0],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,1,1,0],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,1,1,0]
-            ],//8
-            [
-              [0,1,1,1,1,1,0],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [1,1,0,0,0,1,1],
-              [0,1,1,1,0,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,0,1,1],
-              [0,0,0,0,1,1,0],
-              [0,0,0,1,1,0,0],
-              [0,1,1,0,0,0,0]
-            ],//9
-            [
-              [0,0,0,0,0,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,1,1,1,0,0],
-              [0,0,0,0,0,0,0]
-            ]//:
-          ],
       height:400,
       width:250,
       text_index:1,
@@ -165,8 +33,8 @@ export default {
       let layout=d3.select('#neon_matrix').insert('svg').attr('height',this.$data.height).attr('width',this.$data.width)
       // .insert('rect').attr('height',this.$data.height).attr('width',this.$data.width).attr('class','layout').attr('x','0').attr('y','0')
       let layout_matrix=[]
-      this.$data.block_row_num=this.$data.digit[this.$data.text_index].length
-      this.$data.block_column_num=this.$data.digit[this.$data.text_index][0].length
+      this.$data.block_row_num=this.dataset[this.$data.text_index].length
+      this.$data.block_column_num=this.dataset[this.$data.text_index][0].length
       let avg_height=Number.parseInt(this.$data.height/this.$data.block_row_num)
       let avg_width=Number.parseInt(this.$data.width/this.$data.block_column_num)
       let rect_length_max=avg_height>avg_width?avg_width:avg_height
@@ -191,7 +59,7 @@ export default {
       this.addIndex()
       for(let i=0;i<this.$data.block_row_num;i++){
         for(let j=0;j<this.$data.block_column_num;j++){
-          if(this.$data.digit[this.$data.now_index][i][j]==1)this.$data.layout_matrix[i][j].transition().delay(this.$data.delay+Mock.Random.integer(0,this.$data.delay)).attr('fill','orange')
+          if(this.dataset[this.$data.now_index][i][j]==1)this.$data.layout_matrix[i][j].transition().delay(this.$data.delay+Mock.Random.integer(0,this.$data.delay)).attr('fill','orange')
         }
       }
     },
@@ -203,7 +71,7 @@ export default {
       }
     },
     addIndex:function(event){
-      this.$data.now_index=this.$data.now_index==9?0:this.$data.now_index+1
+      this.$data.now_index=this.$data.now_index==this.dataset.length-1?0:this.$data.now_index+1
     }
   },
   mounted() {
@@ -216,5 +84,7 @@ export default {
 </script>
 
 <style scoped>
-
+.info,.control{
+  font-family: Expansiva;
+}
 </style>
